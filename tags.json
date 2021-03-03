@@ -4,7 +4,7 @@
       "name": "release",
       "version": "",
       "commit": "",
-      "upstream": "",
+      "upstream": "master",
       "lastUpdated": ""
     },
     {
@@ -18,7 +18,7 @@
       "name": "nightly",
       "version": "05b44c16f6535f6b4e0badcdc0e082369db91c0e",
       "commit": "7608a3a",
-      "upstream": "",
+      "upstream": "preview",
       "lastUpdated": "2021-03-03T21:59:28.598Z"
     }
   ],
