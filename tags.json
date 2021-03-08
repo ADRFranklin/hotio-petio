@@ -11,14 +11,14 @@
       "name": "testing",
       "version": "",
       "commit": "",
-      "upstream": "",
+      "upstream": "preview",
       "lastUpdated": ""
     },
     {
       "name": "nightly",
       "version": "c26a303d4cdbc30cf83f7aee457661d176dc6354",
       "commit": "b66b1b0",
-      "upstream": "preview",
+      "upstream": "dev",
       "lastUpdated": "2021-03-07T18:56:46.968Z"
     }
   ],
