@@ -1,0 +1,9 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+
+umask "${UMASK}"
+
+if [[ ! -d "${CONFIG_DIR}/logs" ]]; then
+    mkdir "${CONFIG_DIR}/logs"
+    chown hotio:hotio "${CONFIG_DIR}/logs"
+fi
