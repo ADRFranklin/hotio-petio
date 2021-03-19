@@ -31,6 +31,6 @@ FROM ghcr.io/hotio/base@sha256:96350ff96c12387896f33a49396f33d5a07f07d23e9d8243c
 EXPOSE 7777
 RUN apk add --no-cache nodejs
 COPY --from=builder /build/ /app/
-RUN ln -s "${CONFIG_DIR}" "${APP_DIR}/logs" && \
+RUN ln -s "${CONFIG_DIR}/logs/" "${APP_DIR}/logs" && \
     ln -s "${CONFIG_DIR}" "${APP_DIR}/api/config"
 COPY root/ /
