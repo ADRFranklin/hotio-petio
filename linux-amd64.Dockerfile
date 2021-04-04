@@ -4,7 +4,7 @@ RUN apk add --no-cache git curl python3 build-base
 ARG GITHUB_TOKEN
 ARG VERSION
 RUN mkdir /source && \
-    curl -u "${GITHUB_ACTOR}:${GITHUB_TOKEN}" -fsSL "https://github.com/petio-team/petio/archive/${VERSION}.tar.gz" | tar xzf - -C "/source" --strip-components=1 && \
+    curl -u "${GITHUB_ACTOR}:${GITHUB_TOKEN}" -fsSL "https://github.com/petio-team/petio/archive/v${VERSION}.tar.gz" | tar xzf - -C "/source" --strip-components=1 && \
     mkdir /build && \
     cp /source/petio.js /build/ && \
     cp /source/router.js /build/ && \
