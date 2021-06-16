@@ -27,7 +27,7 @@ RUN mkdir /source && \
     chmod -R u=rwX,go=rX /build
 
 
-FROM ghcr.io/hotio/base@sha256:8856f3a1decd8abb2ffdc3e4aca69e546b474ef7fff0382212f0296f3af58a25
+FROM ghcr.io/hotio/base@sha256:d62716ca63905ad321735cd1705effbe009fab7eda59cab5126deb678bf9707d
 EXPOSE 7777
 RUN apk add --no-cache nodejs
 COPY --from=builder /build/ /app/
