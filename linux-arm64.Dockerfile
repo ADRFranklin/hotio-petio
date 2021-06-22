@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 node:14.15.1-alpine3.12 as builder
+FROM --platform=linux/amd64 node:16.3.0-alpine3.13 as builder
 
 RUN apk add --no-cache git curl python3 build-base
 ARG GITHUB_TOKEN
@@ -17,9 +17,9 @@ RUN mkdir /source && \
     cd /build/frontend && \
     npm install && npm run build && \
     cd /build/admin && \
-    npm install && npm run build && \
+    npm install --legacy-peer-deps && npm run build && \
     cd /build/api && \
-    npm install && \
+    npm install --legacy-peer-deps && \
     cd /build && \
     mkdir /build/views && \
     mv /build/frontend/build /build/views/frontend && rm -rf /build/frontend && \
