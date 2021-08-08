@@ -34,7 +34,7 @@ RUN mv /build/frontend/build /build/views/frontend && \
     chmod -R u=rwX,go=rX /build
 
 
-FROM ghcr.io/hotio/base@sha256:4711d833517d261412beb426819702e26d8c02d25643c0e8c5d8fea5d1429c87
+FROM ghcr.io/hotio/base@sha256:b69d59459ad57185a5236471f9391817a441cbd9acfb40041bbb24322e75af44
 EXPOSE 7777
 RUN apk add --no-cache nodejs
 COPY --from=builder /build/ /app/
