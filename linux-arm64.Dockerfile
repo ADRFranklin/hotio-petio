@@ -39,5 +39,6 @@ EXPOSE 7777
 RUN apk add --no-cache nodejs
 COPY --from=builder /build/ /app/
 RUN ln -s "${CONFIG_DIR}/logs/" "${APP_DIR}/logs" && \
-    ln -s "${CONFIG_DIR}" "${APP_DIR}/api/config"
+    ln -s "${CONFIG_DIR}" "${APP_DIR}/api/config" && \
+    ln -s "${CONFIG_DIR}/imdb_dump.txt" "${APP_DIR}/api/imdb_dump.txt"
 COPY root/ /
