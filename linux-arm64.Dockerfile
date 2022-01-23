@@ -4,34 +4,17 @@ RUN apk add --no-cache git curl python3 build-base
 ARG GITHUB_TOKEN
 ARG VERSION
 RUN mkdir /source && \
-    curl -u "${GITHUB_ACTOR}:${GITHUB_TOKEN}" -fsSL "https://github.com/petio-team/petio/archive/${VERSION}.tar.gz" | tar xzf - -C "/source" --strip-components=1
-
-WORKDIR /build
-RUN cp /source/petio.js . && \
-    cp /source/router.js . && \
-    cp /source/package.json . && \
-    npm install && \
-    cp -R /source/frontend . && \
-    cp -R /source/admin . && \
-    cp -R /source/api .
-
-WORKDIR /build/frontend
-RUN npm install && \
-    npm run build
-
-WORKDIR /build/admin
-RUN npm install --legacy-peer-deps && \
-    npm run build
-
-WORKDIR /build/api
-RUN npm install --legacy-peer-deps
-
-WORKDIR /build/views
-RUN mv /build/frontend/build /build/views/frontend && \
-    rm -rf /build/frontend && \
-    mv /build/admin/build /build/views/admin && \
-    rm -rf /build/admin && \
-    chmod -R u=rwX,go=rX /build
+    curl -u "${GITHUB_ACTOR}:${GITHUB_TOKEN}" -fsSL "https://github.com/petio-team/petio/archive/${VERSION}.tar.gz" | tar xzf - -C "/source" --strip-components=1 && \
+    npm i -g typescript ts-node && \
+    cd /source/pkg/admin && \
+    npm i && \
+    npm run build && \
+    cd /source/pkg/frontend && \
+    npm i && \
+    npm run build && \
+    cd /source/pkg/api && \
+    npm i && \
+    chmod -R u=rwX,go=rX /source/pkg
 
 
 FROM cr.hotio.dev/hotio/base@sha256:9f4741371043929c19ed6b7468b18aa9e07c66143ffe92bf8c2e2ff78d0193fa
