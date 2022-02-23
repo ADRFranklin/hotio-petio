@@ -27,8 +27,4 @@ COPY --from=builder /source/pkg/admin/build /app/views/admin
 COPY --from=builder /source/pkg/api/dist /app/api
 COPY --from=builder /source/pkg/api/node_modules /app/api/node_modules
 
-RUN ln -s "${CONFIG_DIR}/logs/" "${APP_DIR}/logs" && \
-    ln -s "${CONFIG_DIR}" "${APP_DIR}/api/config" && \
-    ln -s "${CONFIG_DIR}/imdb_dump.txt" "${APP_DIR}/api/imdb_dump.txt"
-
 COPY root/ /
