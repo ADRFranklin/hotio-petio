@@ -5,15 +5,16 @@ ARG GITHUB_TOKEN
 ARG VERSION
 RUN mkdir /source && \
     curl -u "${GITHUB_ACTOR}:${GITHUB_TOKEN}" -fsSL "https://github.com/petio-team/petio/archive/${VERSION}.tar.gz" | tar xzf - -C "/source" --strip-components=1 && \
-    npm i -g typescript ts-node && \
+    npm i -g typescript && \
     cd /source/pkg/admin && \
-    npm i && \
+    npm i --legacy-peer-deps && \
     npm run build && \
     cd /source/pkg/frontend && \
-    npm i && \
+    npm i --legacy-peer-deps && \
     npm run build && \
     cd /source/pkg/api && \
-    npm i && \
+    npm i --legacy-peer-deps && \
+    npm run build && \
     chmod -R u=rwX,go=rX /source/pkg
 
 
