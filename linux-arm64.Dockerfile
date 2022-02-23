@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 node:17.4.0-alpine as builder
+FROM --platform=linux/amd64 node:16.3.0-alpine3.13 as builder
 
 RUN apk add --no-cache git curl python3 build-base
 ARG GITHUB_TOKEN
