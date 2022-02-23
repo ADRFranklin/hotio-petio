@@ -3,7 +3,8 @@
 
 umask "${UMASK}"
 
-DATA_FOLDER="${CONFIG_DIR}" && export DATA_FOLDER
+DATA_FOLDER="${CONFIG_DIR}"     && export DATA_FOLDER
+VIEWS_FOLDER="${APP_DIR}/views" && export VIEWS_FOLDER
 
 cd "${APP_DIR}" || exit 1
 exec s6-setuidgid hotio node "${APP_DIR}/api/main.js" --host 0.0.0.0 --port 7777
