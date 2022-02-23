@@ -20,7 +20,12 @@ RUN mkdir /source && \
 FROM cr.hotio.dev/hotio/base@sha256:9f4741371043929c19ed6b7468b18aa9e07c66143ffe92bf8c2e2ff78d0193fa
 EXPOSE 7777
 RUN apk add --no-cache nodejs
-COPY --from=builder /build/ /app/
+
+COPY --from=builder /source/pkg/frontend/build /app/views/frontend
+COPY --from=builder /source/pkg/admin/build /app/views/admin
+COPY --from=builder /source/pkg/api/dist /app/api
+COPY --from=builder /source/pkg/api/node_modules /app/api/node_modules
+
 RUN ln -s "${CONFIG_DIR}/logs/" "${APP_DIR}/logs" && \
     ln -s "${CONFIG_DIR}" "${APP_DIR}/api/config" && \
     ln -s "${CONFIG_DIR}/imdb_dump.txt" "${APP_DIR}/api/imdb_dump.txt"
