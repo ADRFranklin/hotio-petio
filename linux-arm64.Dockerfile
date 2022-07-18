@@ -18,7 +18,7 @@ RUN mkdir /source && \
     chmod -R u=rwX,go=rX /source/pkg
 
 
-FROM cr.hotio.dev/hotio/base@sha256:d4367f0bb0eebf886d2f0ae3edb724de753b6e3f59fa543207c1c71dd465686d
+FROM cr.hotio.dev/hotio/base@sha256:6fa9120a5ebc43a519fbdb37508c39db91ef6eb3663627c2540851fe5b72c729
 EXPOSE 7777
 RUN apk add --no-cache nodejs
 
