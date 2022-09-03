@@ -5,16 +5,11 @@ ARG GITHUB_TOKEN
 ARG VERSION
 RUN mkdir /source && \
     curl -u "${GITHUB_ACTOR}:${GITHUB_TOKEN}" -fsSL "https://github.com/petio-team/petio/archive/${VERSION}.tar.gz" | tar xzf - -C "/source" --strip-components=1 && \
-    npm i -g typescript && \
-    cd /source/pkg/admin && \
-    npm i --legacy-peer-deps && \
-    npm run build && \
-    cd /source/pkg/frontend && \
-    npm i --legacy-peer-deps && \
-    npm run build && \
-    cd /source/pkg/api && \
-    npm i --legacy-peer-deps && \
-    npm run build && \
+    yarn add typescript && \
+    yarn workspaces focus --all && \
+    yarn workspace frontend run build && \
+    yarn workspace admin run build && \
+    yarn workspace api run build:prod && \
     chmod -R u=rwX,go=rX /source/pkg
 
 
@@ -25,6 +20,6 @@ RUN apk add --no-cache nodejs
 COPY --from=builder /source/pkg/frontend/build /app/views/frontend
 COPY --from=builder /source/pkg/admin/build /app/views/admin
 COPY --from=builder /source/pkg/api/dist /app/api
-COPY --from=builder /source/pkg/api/node_modules /app/api/node_modules
+COPY --from=builder /source/pkg/api/package.json /app/api/package.json
 
 COPY root/ /
