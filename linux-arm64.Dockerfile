@@ -6,6 +6,7 @@ ARG VERSION
 RUN mkdir /source && \
     curl -u "${GITHUB_ACTOR}:${GITHUB_TOKEN}" -fsSL "https://github.com/petio-team/petio/archive/${VERSION}.tar.gz" | tar xzf - -C "/source" --strip-components=1 && \
     yarn add typescript && \
+    cd /source && \
     yarn workspaces focus --all && \
     yarn workspace frontend run build && \
     yarn workspace admin run build && \
